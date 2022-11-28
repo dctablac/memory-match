@@ -1,4 +1,6 @@
 .content {
     background: var(--content-bg);
+    display: flex;
+    justify-content: center;
     min-height: 100vh;
 }
