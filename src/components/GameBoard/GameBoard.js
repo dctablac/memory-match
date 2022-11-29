@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import GameCard from '../GameCard';
 import './styles.css';
 
-export default function GameBoard() {
+export default function GameBoard(props) {
     const [board, setBoard]= useState([]);
-    useEffect(() => {
+    const newGame = () => {
         // Instantiate array of shape objects
         const shapes = [
             "circle", "circle", "square", "square",
@@ -18,12 +18,24 @@ export default function GameBoard() {
                 className: 'game-card'
             }
         }));
-    }, []);
-
+    }
     const shuffleShapes = (shapeArr) => {
         // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array#comment91985653_2450954
         shapeArr.sort(() => (Math.random() > .5) ? 1 : -1);
     };
+    useEffect(() => {
+        newGame();
+    }, []);
+
+
+    const [remaining, setRemaining] = useState(6); // 6 pairs
+    useEffect(() => {
+        if (remaining === 0) {
+            // TODO: Game over modal
+            props.setGameOver(true);
+        }
+    });
+
 
     const [firstChoice, setFirstChoice] = useState(-1);
     const [secondChoice, setSecondChoice] = useState(-1);
@@ -31,7 +43,9 @@ export default function GameBoard() {
         // Once second choice is made, make comparisons
         if (secondChoice > -1) {
             if (board[firstChoice].icon === board[secondChoice].icon) {
-                setTimeout(() => alert('You found a match'), 1000);
+                setTimeout(() => {
+                    setRemaining((prevRemaining) => prevRemaining - 1);
+                }, 1000);
                 // TODO: Set finalized matches to a different class to differ from picked ones
             } else {
                 setTimeout(() => {
@@ -47,6 +61,7 @@ export default function GameBoard() {
             setSecondChoice(-1);
         }
     }, [secondChoice]);
+    
 
     const handleClick = (e) => {
         // Get the index of this card in the board array
