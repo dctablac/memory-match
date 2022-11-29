@@ -2,26 +2,28 @@ import { useEffect, useState } from 'react';
 import GameCard from '../GameCard';
 import './styles.css';
 
-
 export default function GameBoard() {
     const [board, setBoard]= useState([]);
     useEffect(() => {
         // Instantiate array of shape objects
-        // TODO: Randomize placement of shapes
         const shapes = [
             "circle", "circle", "square", "square",
             "triangle", "triangle", "pentagon", "pentagon",
             "hexagon", "hexagon", "star", "star"
-        ]
-        const newBoard = [];
-        shapes.forEach((shape) => {
-            newBoard.push({
+        ];
+        shuffleShapes(shapes);
+        setBoard(shapes.map((shape) => {
+            return {
                 icon: shape,
                 className: 'game-card'
-            });
-        });
-        setBoard(newBoard);
+            }
+        }));
     }, []);
+
+    const shuffleShapes = (shapeArr) => {
+        // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array#comment91985653_2450954
+        shapeArr.sort(() => (Math.random() > .5) ? 1 : -1);
+    };
 
     const [firstChoice, setFirstChoice] = useState(-1);
     const [secondChoice, setSecondChoice] = useState(-1);
@@ -30,6 +32,7 @@ export default function GameBoard() {
         if (secondChoice > -1) {
             if (board[firstChoice].icon === board[secondChoice].icon) {
                 setTimeout(() => alert('You found a match'), 1000);
+                // TODO: Set finalized matches to a different class to differ from picked ones
             } else {
                 setTimeout(() => {
                     setBoard((prevBoard) => {
@@ -53,8 +56,7 @@ export default function GameBoard() {
             prevBoard[boardIdx].className = prevBoard[boardIdx].className === 'game-card' ? 'game-card flipped' : 'game-card';
             return [...prevBoard];
         });
-        // This will cause rerender of board
-        // Set choice accordingly
+        // Set choice according to what the choices have been picked already.
         if (firstChoice === -1) {
             setFirstChoice(boardIdx);
         } else if (secondChoice === -1) {
