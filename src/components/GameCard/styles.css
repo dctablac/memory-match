@@ -5,10 +5,25 @@
     display: flex;
     justify-content: center;
     max-width: 200px;
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
     width: 100%;
 }
 
+.game-card:hover {
+    box-shadow: 0 0 1em 0 white;
+    cursor: pointer;
+}
+
+.flipped {
+    pointer-events: none;
+    transform: rotateY(0deg);
+}
+
 .bi {
+    backface-visibility: hidden;
     color: var(--card-icon-color);
     font-size: 5em;
+    pointer-events: none;
 }
