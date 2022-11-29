@@ -1,9 +1,9 @@
-import Content from './Content';
+import Game from './Game';
 
 export default function App() {
   return (
     <>
-      <Content />
+      <Game />
     </>
   );
 }
