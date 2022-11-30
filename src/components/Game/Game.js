@@ -38,9 +38,11 @@ export default function Content() {
 
     const [firstChoice, setFirstChoice] = useState(-1);
     const [secondChoice, setSecondChoice] = useState(-1);
+    const [blocked, setBlocked] = useState(false);
     // Only determine matches if second choice is made
     useEffect(() => {
         if (secondChoice > -1) {
+            setBlocked(true);
             if (board[firstChoice].icon === board[secondChoice].icon) {
                 setTimeout(() => {
                     setBoard((prevBoard) => {
@@ -50,8 +52,10 @@ export default function Content() {
                     });
                     setRemaining((prevRemaining) => prevRemaining - 1);
                 }, 800);
-                // TODO: Set finalized matches to a different class to differ from picked ones
-            } else {
+                setTimeout(() => {
+                    setBlocked(false);
+                }, 1500);
+            } else { // Timeouts are to account for animation duration and flipping
                 setTimeout(() => {
                     setBoard((prevBoard) => {
                         prevBoard[firstChoice].className = 'game-card flipped not-matched';
@@ -66,6 +70,9 @@ export default function Content() {
                         return [...prevBoard]
                     });
                 }, 1500);
+                setTimeout(() => {
+                    setBlocked(false);
+                }, 2500);
             }
             // Reset choices whether match or mismatch
             setFirstChoice(-1);
@@ -103,6 +110,7 @@ export default function Content() {
     return (
         <div className="game">
             <GameBoard board={board} onClick={handleClick}/>
+            {blocked && <div className="blocker"></div>}
             {gameOver && <GameOver onPlayAgain={handlePlayAgain}/>}
         </div>
     );

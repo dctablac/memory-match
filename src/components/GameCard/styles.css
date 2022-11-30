@@ -2,34 +2,39 @@
     align-items: center;
     background: var(--card-bg);
     border-radius: 0.2em;
+    box-shadow: 0 0 0.2em 0.1em black;
     display: flex;
     justify-content: center;
     max-width: 180px;
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
     transform-style: preserve-3d;
-    transition: transform 1s ease;
+    transition: transform 1s;
     width: 100%;
 }
 
 .game-card:hover {
-    box-shadow: 0 0 1em 0 white;
+    box-shadow: 0 0 0.1em 0 white;
     cursor: pointer;
 }
 
 .flipped {
-    box-shadow: 0 0 1em 0 white;
     pointer-events: none;
     transform: rotateY(0deg);
 }
 
 .matched {
     animation: goodMatch 0.5s;
-    box-shadow: 0 0 0.2em 0 green;
 }
 
 .not-matched {
     animation: badMatch 0.5s;
-    box-shadow: 0 0 0.2em 0 red;
+}
+
+.blocker {
+    background: rgba(0,0,0,0);
+    height: 100%;
+    position: absolute;
+    width: 100%;
 }
 
 .bi {
@@ -37,24 +42,20 @@
     color: var(--card-icon-color);
     font-size: 5em;
     pointer-events: none;
+    position: absolute;
 }
 
 
 @keyframes goodMatch {
     0% {
-        transform: scale(1);
-    }
-    25% {
-        transform: rotateX(15deg);
+        transform: scale(1) translateY(0px);
     }
     50% {
-        transform: scale(1.05);
-    }
-    75% {
-        transform: rotateX(-15deg);
+        /* box-shadow: 0 0 0.5em 0.05em black; */
+        transform: scale(1.05) translateY(-5px);
     }
     100% {
-        transform: scale(1)
+        transform: scale(1) translateY(0);
     }
 }
 

@@ -1,0 +1,7 @@
+.card-logo {
+    backface-visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    transform: rotateY(-180deg);
+    width: 60%;
+}

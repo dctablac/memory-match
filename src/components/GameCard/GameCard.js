@@ -1,3 +1,4 @@
+import CardLogo from '../CardLogo/CardLogo';
 import './styles.css';
 
 export default function GameCard(props) {
@@ -8,6 +9,7 @@ export default function GameCard(props) {
             onClick={props.onClick}
         >
             <i className={`bi bi-${props.icon}-fill`}></i>
+            <CardLogo />
         </div>
     );
 }
