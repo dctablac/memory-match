@@ -8,7 +8,7 @@
     max-width: 180px;
     transform: rotateY(-180deg);
     transform-style: preserve-3d;
-    transition: transform 1s;
+    transition: transform 1000ms;
     width: 100%;
 }
 
@@ -23,26 +23,26 @@
 }
 
 .matched {
-    animation: goodMatch 0.5s;
+    animation: goodMatch 500ms;
 }
 
 .not-matched {
-    animation: badMatch 0.5s;
-}
-
-.blocker {
-    background: rgba(0,0,0,0);
-    height: 100%;
-    position: absolute;
-    width: 100%;
+    animation: badMatch 500ms;
 }
 
 .bi {
     backface-visibility: hidden;
     color: var(--card-icon-color);
-    font-size: 5em;
+    font-size: 4em;
     pointer-events: none;
     position: absolute;
+}
+
+
+@media (max-width: 960px) {
+    .bi {
+        font-size: 3em;
+    }
 }
 
 
@@ -51,7 +51,6 @@
         transform: scale(1) translateY(0px);
     }
     50% {
-        /* box-shadow: 0 0 0.5em 0.05em black; */
         transform: scale(1.05) translateY(-5px);
     }
     100% {

@@ -5,3 +5,10 @@
     min-height: 100vh;
     position: relative;
 }
+
+.blocker {
+    background: rgba(0,0,0,0);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}

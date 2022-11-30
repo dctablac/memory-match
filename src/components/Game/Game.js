@@ -51,10 +51,10 @@ export default function Content() {
                         return [...prevBoard]
                     });
                     setRemaining((prevRemaining) => prevRemaining - 1);
-                }, 800);
+                }, 1000);
                 setTimeout(() => {
                     setBlocked(false);
-                }, 1500);
+                }, 1700);
             } else { // Timeouts are to account for animation duration and flipping
                 setTimeout(() => {
                     setBoard((prevBoard) => {
@@ -62,14 +62,14 @@ export default function Content() {
                         prevBoard[secondChoice].className = 'game-card flipped not-matched';
                         return [...prevBoard]
                     });
-                }, 800);
+                }, 1000);
                 setTimeout(() => {
                     setBoard((prevBoard) => {
                         prevBoard[firstChoice].className = 'game-card';
                         prevBoard[secondChoice].className = 'game-card';
                         return [...prevBoard]
                     });
-                }, 1500);
+                }, 1700);
                 setTimeout(() => {
                     setBlocked(false);
                 }, 2500);

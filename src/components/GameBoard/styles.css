@@ -6,5 +6,17 @@
     margin: 2%;
     max-width: 800px;
     perspective: 1000px;
-    width: 80%;
+    width: 100%;
+}
+
+@media (max-width: 960px) {
+    .game-board {
+        margin: 15% 5%;
+    }
+}
+
+@media (max-height: 800px) {
+    .game-board {
+        margin: 5%;
+    }
 }
