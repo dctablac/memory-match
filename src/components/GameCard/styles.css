@@ -17,8 +17,19 @@
 }
 
 .flipped {
+    box-shadow: 0 0 1em 0 white;
     pointer-events: none;
     transform: rotateY(0deg);
+}
+
+.matched {
+    animation: goodMatch 0.5s;
+    box-shadow: 0 0 0.2em 0 green;
+}
+
+.not-matched {
+    animation: badMatch 0.5s;
+    box-shadow: 0 0 0.2em 0 red;
 }
 
 .bi {
@@ -26,4 +37,44 @@
     color: var(--card-icon-color);
     font-size: 5em;
     pointer-events: none;
+}
+
+
+@keyframes goodMatch {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: rotateX(15deg);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    75% {
+        transform: rotateX(-15deg);
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+
+@keyframes badMatch {
+    0% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-2px);
+    }
+    40% {
+        transform: translateX(2px);
+    }
+    60% {
+        transform: translateX(-2px);
+    }
+    80% {
+        transform: translateX(2px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

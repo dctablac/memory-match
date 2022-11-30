@@ -43,17 +43,29 @@ export default function Content() {
         if (secondChoice > -1) {
             if (board[firstChoice].icon === board[secondChoice].icon) {
                 setTimeout(() => {
+                    setBoard((prevBoard) => {
+                        prevBoard[firstChoice].className = 'game-card flipped matched';
+                        prevBoard[secondChoice].className = 'game-card flipped matched';
+                        return [...prevBoard]
+                    });
                     setRemaining((prevRemaining) => prevRemaining - 1);
-                }, 1000);
+                }, 800);
                 // TODO: Set finalized matches to a different class to differ from picked ones
             } else {
+                setTimeout(() => {
+                    setBoard((prevBoard) => {
+                        prevBoard[firstChoice].className = 'game-card flipped not-matched';
+                        prevBoard[secondChoice].className = 'game-card flipped not-matched';
+                        return [...prevBoard]
+                    });
+                }, 800);
                 setTimeout(() => {
                     setBoard((prevBoard) => {
                         prevBoard[firstChoice].className = 'game-card';
                         prevBoard[secondChoice].className = 'game-card';
                         return [...prevBoard]
                     });
-                }, 1200);
+                }, 1500);
             }
             // Reset choices whether match or mismatch
             setFirstChoice(-1);
