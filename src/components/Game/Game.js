@@ -78,7 +78,7 @@ export default function Content() {
             setFirstChoice(-1);
             setSecondChoice(-1);
         }
-    }, [secondChoice]);
+    }, [firstChoice, secondChoice, board]);
     
 
     const handleClick = (e) => {
